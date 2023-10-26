@@ -6,4 +6,4 @@ Gaming ToolKit
 ### Key Binder
 ### Crosshair v.2
 ## Other Tools
-### Sludge Engine (Cheat Engine 7.3 rebuilt for AntiCheat Avoidence)
+### Sludge Engine (Cheat Engine 7.3 rebuilt for AntiCheat avoidence)
