@@ -5,6 +5,8 @@ Auto-Recoil
 Auto-Click (CPS)
 Key Binder
 Crosshair v.2
+Bhop
+CS2 Auto-Recoil with patterns
 ## Other Tools
 Sludge Engine (Cheat Engine 7.3 rebuilt for AntiCheat avoidence)
 ## Dependencies
