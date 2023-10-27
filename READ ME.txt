@@ -7,7 +7,11 @@ Game assistant was an attempt to collab several tools involving hud and general 
 
 Recoil-assist and auto-click can somtimes fight each other and usually can only allow one active at a time.
 
+Bhop is a space bar macro for CS and minecraft.
+
 CrosshairV.1 was very powerful but the keybinds would bug out with other apps active. 
 Built CrosshairV.2 which uses f10 and f11.
+
+CS Anti-Recoil matches recoil patterns almost 95% acuracy.
 
 Sludge Engine is an open source build of cheat engine. Basically all thats been done is every word cheat was replaced with sludge to avoid any and all anticheat. Not AntiCheat proof, due to driver errors. But most AntiCheats dont bat an eye at sludge.
