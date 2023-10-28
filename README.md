@@ -1,4 +1,4 @@
-![newgui](https://github.com/CoachSludge/SceptreTK/assets/141787395/c42199c0-8e52-493d-bfb4-9f498be1f22b)# SceptreTK
+# SceptreTK
 Gaming ToolKit
 ## Auto HotKey Tools Including:
 Auto-Recoil.
