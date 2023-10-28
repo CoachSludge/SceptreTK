@@ -1,7 +1,7 @@
 @coach.sludge
 These are tools that I've made.
 They do exactly what they are intended to do.
-Will need AutoHotKey which was used for most of the build. Included in master folder.
+Will need AutoHotKey which was used for most of the build.
 
 Game assistant was an attempt to collab several tools involving hud and general keybinds, however they can somtimes fight with the other apps such as the recoil-assist. Works well with multibind games such as arma and squad.
 
