@@ -8,7 +8,7 @@ Crosshair.
 Bhop.
 CS2 Auto-Recoil with patterns.
 ## Other Tools
-Sludge Engine (Cheat Engine 7.3 rebuilt for AntiCheat avoidence)
+Music Player, m3u Creator. Custom background, and overlay bind.
 ## Dependencies
 Autohotkey
 
