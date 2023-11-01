@@ -1,0 +1,16 @@
+MODIFIED=20150102
+setworkingdir,%a_scriptdir%
+PRESELECT=%a_desktop%
+FileSelectFolder,MF, 3, , Select Audio File, Audio (*.wpl; *.wav; *.mp2; *.mp3; *.wma; *.mpeg)
+if MF=
+return
+SplitPath,MF, name, dir, ext, name_no_ext, drive
+F1=%A_desktop%\%name_no_ext%.m3u
+ifexist,%f1%
+filedelete,%f1%
+setworkingdir,%MF%
+Loop, %mf%\*.mp3, 0, 1
+e4x .= A_LoopFileFullPath "`r`n"
+fileappend,%e4x%,%f1%
+run,%f1%
+Return
