@@ -1,0 +1,397 @@
+if not A_IsAdmin
+{
+Run *RunAs "%A_ScriptFullPath%"
+ExitApp
+}
+SM3:=0 ;volume
+soundset,0,master,mute         ;SPEAKER=MASTER ON
+SoundSet,%SM3%,master          ;SPEAKER=MASTER volume
+
+Gui, Add, Tab3, x25 y25 w325 h425 , General Binds|CS2|HUD|Super Binder|Music|Misc
+Gui, Show, x599 y260 h475 w375, Sceptre
+;--------------------------General---------------------------------------------------------------;
+Gui Tab, 1
+Gui, Add, Picture, x0 y0 w626 h525 0x4000000 vMyPicture1,tools\dump\back.jpg
+Gui, Add, GroupBox, x35 y59 w80 h60 , Auto-Click
+Gui, Add, GroupBox, x35 y129 w80 h60 , AC-Speed
+Gui, Add, GroupBox, x120 y59 w80 h60 , Anti-Recoil
+Gui, Add, GroupBox, x120 y129 w80 h60 , AR-Speed
+Gui, Add, GroupBox, x205 y59 w80 h60 , Bhop
+Gui, Add, GroupBox, x205 y129 w80 h60 , Bhop-Speed
+Gui, Add, Hotkey, x45 y79 w60 h30 vAC, % ACC := "Home"
+Gui, Add, Edit, x45 y149 w60 h30 vACS, 200
+Gui, Add, CheckBox,x35 y200 vEE gCheckBox, Toggle Auto-Click
+Hotkey, Home, CheckBox
+Gui, Add, Hotkey, x130 y79 w60 h30 vAR, % ARR := "End"
+Gui, Add, Edit, x130 y149 w60 h30 vARS, 1
+Gui, Add, CheckBox,x35 y220 vED gCheckBox2, Toggle Anti-Recoil
+Gui, Add, Text, x150 y220 h15, Only Works with RButton Down
+Hotkey, End, CheckBox2
+Gui, Add, Hotkey, x215 y79 w60 h30 vBH, % BHH := "RAlt"
+Gui, Add, Edit, x215 y149 w60 h30 vBHO, 20
+Gui, Add, CheckBox,x35 y240 vER gCheckBox3, Toggle Bhop
+Hotkey, RAlt, CheckBox3
+Gui, Add, Button, x35 y260 w100, Apply Changes
+Hotkey, LButton, LeftButton, Off
+Hotkey, LButton Up, LeftButtonUp, Off
+Hotkey, ~RButton & LButton, ac, Off
+Hotkey, ~RButton & LButton Up, acu, Off
+Hotkey, Space, Sbar, Off
+Hotkey, Space Up, SbarUp, Off
+;--------------------------CS2-GUI---------------------------------------------------------------;
+Gui Tab, 2
+Gui, Add, Picture, x0 y0 w626 h525 0x4000000 vMyPicture2,tools\dump\back.jpg
+Gui, Add, GroupBox, x35 y59 w80 h60 , M4A4
+Gui, Add, GroupBox, x205 y59 w80 h60 , Famas
+Gui, Add, GroupBox, x120 y59 w80 h60 , M4A1
+Gui, Add, GroupBox, x35 y129 w80 h60 , AUG
+Gui, Add, GroupBox, x120 y129 w80 h60 , AK
+Gui, Add, GroupBox, x205 y129 w80 h60 , Galil
+Gui, Add, GroupBox, x35 y199 w80 h60 , SG
+Gui, Add, GroupBox, x120 y199 w80 h60 , UMP
+Gui, Add, GroupBox, x205 y199 w80 h60 , off
+Gui, Add, GroupBox, x35 y269 w80 h60 CRed, zoomsens
+Gui, Add, GroupBox, x120 y269 w80 h60 CRed, sens
+Gui, Add, GroupBox, x205 y269 w80 h60 , hold zoom
+Gui, Add, Hotkey, x45 y79 w60 h30 vM4A4,
+Gui, Add, Hotkey, x45 y149 w60 h30 vAUG,
+Gui, Add, Hotkey, x45 y219 w60 h30 vSG,
+Gui, Add, Hotkey, x130 y79 w60 h30 vM4A1,
+Gui, Add, Hotkey, x130 y149 w60 h30 vAK,
+Gui, Add, Hotkey, x130 y219 w60 h30 vUMP,
+Gui, Add, Hotkey, x215 y79 w60 h30 vFamas,
+Gui, Add, Hotkey, x215 y149 w60 h30 vGalil,
+Gui, Add, Hotkey, x215 y219 w60 h30 voff,
+Gui, Add, Hotkey, x215 y289 w60 h30 vzoom,
+Gui, Add, Text, x40 y355 w250 h15 , You can change recoil weapon keys as you wish
+Gui, Add, Text, x40 y400 h15 CRed, Make sure to KILL when done, it will not close on its own
+Gui, Add, Text, x80 y335 w175 h15 CRed, Important: Set your game sensitivity
+Gui, Add, Button, x40 y375 w80 h20 gGenerateConfig, Save
+Gui, Add, Button, x125 y375 w80 h20 gopen, Run
+Gui, Add, Button, x210 y375 w80 h20 gclose, Kill
+Gui, Add, Edit, x45 y289 w60 h30  vzoomsenss
+Gui, Add, Edit, x130 y289 w60 h30  vsenss
+Gui, Add, Text, x200 y25 w40 h20 , Sludge
+IniFile := "tools\config\config.ini"
+GuiControl,, senss, % GetIniValue(IniFile, "Settings", "sens")
+GuiControl,, zoomsenss, % GetIniValue(IniFile, "Settings", "zoomsens")
+GuiControl,, M4A4, % GetIniValue(IniFile, "KeyBinds", "M4A4")
+GuiControl,, AUG, % GetIniValue(IniFile, "KeyBinds", "AUG")
+GuiControl,, SG, % GetIniValue(IniFile, "KeyBinds", "SG")
+GuiControl,, Galil, % GetIniValue(IniFile, "KeyBinds", "Galil")
+GuiControl,, M4A1, % GetIniValue(IniFile, "KeyBinds", "M4A1")
+GuiControl,, AK, % GetIniValue(IniFile, "KeyBinds", "AK")
+GuiControl,, UMP, % GetIniValue(IniFile, "KeyBinds", "UMP")
+GuiControl,, zoom, % GetIniValue(IniFile, "KeyBinds", "Zoom")
+GuiControl,, Famas, % GetIniValue(IniFile, "KeyBinds", "Famas")
+GuiControl,, off, % GetIniValue(IniFile, "KeyBinds", "Off")
+;--------------------hud--------------------------;
+Gui Tab, 3
+Gui, Add, Picture, x0 y0 w626 h525 0x4000000 vMyPicture3,tools\dump\back.jpg
+;-----crosshair---;
+Gui, Add, Text, x35 y60 w100 h20, CrossHair
+Gui, Add, GroupBox, x145 y59 w80 h60 , Hide
+Gui, Add, Hotkey, x155 y79 w60 h30 vhide,
+Gui, Add, GroupBox, x240 y59 w80 h60 , GUI
+Gui, Add, Hotkey, x250 y79 w60 h30 vgui,
+Gui, Add, Button, x35 y85 w100 h20, CrossHair Start
+Gui, Add, Button, x35 y110 w100 h20, CrossHair Kill
+Gui, Add, Button, x35 y135 w100 h20 gsaveconfig, Save
+Gui, Add, Button, x35 y160 w100 h20 greloadcross, Reload
+IniFile := "tools\config\cross.ini"
+GuiControl,, hide, % GetIniValuec(IniFile, "Hotkeys", "HIDE")
+GuiControl,, gui, % GetIniValuec(IniFile, "Hotkeys", "GUI")
+;------------stress--------------------;
+
+;--------------------binder----------------------;
+Gui Tab, 4
+Gui, Add, Picture, x0 y0 w626 h525 0x4000000 vMyPicture4,tools\dump\back.jpg
+Gui, Add, Text, x35 y60 w100 h20 , Keybind 1:
+Gui, Add, Edit, x140 y60 w150 h20 vKeybind1, ^!a ; Default keybind: Ctrl + Alt + A
+Gui, Add, Text, x35 y90 w100 h20 , Action 1:
+Gui, Add, Edit, x140 y90 w150 h20 vAction1, MyCustomAction1
+Gui, Add, Text, x35 y120 w100 h20 , Keybind 2:
+Gui, Add, Edit, x140 y120 w150 h20 vKeybind2, ^!b ; Default keybind: Ctrl + Alt + B
+Gui, Add, Text, x35 y150 w100 h20 , Action 2:
+Gui, Add, Edit, x140 y150 w150 h20 vAction2, MyCustomAction2
+Gui, Add, Text, x35 y180 w100 h20 , Keybind 3:
+Gui, Add, Edit, x140 y180 w150 h20 vKeybind3, ^!c ; Default keybind: Ctrl + Alt + C
+Gui, Add, Text, x35 y210 w100 h20 , Action 3:
+Gui, Add, Edit, x140 y210 w150 h20 vAction3, MyCustomAction3
+Gui, Add, Text, x35 y240 w100 h20 , Keybind 4:
+Gui, Add, Edit, x140 y240 w150 h20 vKeybind4, ^!d ; Default keybind: Ctrl + Alt + D
+Gui, Add, Text, x35 y270 w100 h20 , Action 4:
+Gui, Add, Edit, x140 y270 w150 h20 vAction4, MyCustomAction4
+Gui, Add, Text, x35 y300 w100 h20 , Keybind 5:
+Gui, Add, Edit, x140 y300 w150 h20 vKeybind5, ^!e ; Default keybind: Ctrl + Alt + E
+Gui, Add, Text, x35 y330 w100 h20 , Action 5:
+Gui, Add, Edit, x140 y330 w150 h20 vAction5, MyCustomAction5
+Gui, Add, Text, x35 y360 w100 h20 , Keybind 6:
+Gui, Add, Edit, x140 y360 w150 h20 vKeybind6, ^!f ; Default keybind: Ctrl + Alt + F
+Gui, Add, Text, x35 y390 w100 h20 , Action 6:
+Gui, Add, Edit, x140 y390 w150 h20 vAction6, MyCustomAction6
+Gui, Add, Button, x35 y413 w100 h30 gSetKeybinds, Set Keybinds
+Gui, Add, Text, x140 y420 w150 h20, Requires super basic ahk skills
+
+;--------------------music-------------------------;
+Gui Tab, 5
+Gui, Add, Picture, x0 y0 w626 h525 0x4000000 vMyPicture5,tools\dump\back.jpg
+Gui, Add, Button, x30 y50 w70 h30 gMusic, Open File
+Gui, Add, Button, x30 y140 w50 h20 gStart, Start
+Gui, Add, Text, x100 y140 h20, Now Playing:
+Gui, Add, Text, x100 y170 w200 h40 vNowPlayingText,
+Gui, Add, Text, x30 y290 h20, For playlists, create a .m3u file.
+Gui, Add, Button, x30 y170 w50 h20 gPause, Pause
+Gui, Add, Button, x30 y200 w50 h20 gUnpause, Resume
+Gui, Add, Button, x30 y260 w50 h20 gNext, Skip
+Gui, Add, Button, x30 y230 w50 h20 gStop, Stop
+Gui, Add, Button, x30 y320 w115 h20 gm3u, M3U Creator
+Gui, Add, Slider, x126 y50 w100 h30 vVolume Range0-100 gVolumeX, 100
+Gui, Add, Text, x126 y90 w100 h30 vVolumeText,
+
+Gui, Add, ActiveX, vAV, WMPLayer.OCX
+;--------misc---------------------------------------:
+Gui Tab, 6
+Gui, Add, Picture, x0 y0 w626 h525 0x4000000 vMyPicture6,tools\dump\back.jpg
+Gui, Add, Text, x35 y60 w100 h20, Change Background
+Gui, Add, Button,x35 y85 w100 h20 gChangeImageALL, Open Image
+Gui, Add, GroupBox, x145 y59 w80 h60 , Overlay
+Gui, Add, Hotkey, x155 y79 w60 h30 vover, +1
+Gui, Add, Button, x35 y110 w100 h20 gsaveover, Save
+
+;----------change-back-------------------;
+ChangeImageAll:
+    FileSelectFile, NewImage, , , Select Image, Images (*.bmp;*.jpg;*.jfif;*.png)
+    if ErrorLevel
+        return
+    GuiControl, , MyPicture1, %NewImage%
+    GuiControl, , MyPicture2, %NewImage%
+	GuiControl, , MyPicture3, %NewImage%
+	GuiControl, , MyPicture4, %NewImage%
+	GuiControl, , MyPicture5, %NewImage%
+	GuiControl, , MyPicture6, %NewImage%
+return
+;------------------------hide-----------;
+saveover:
+    Gui, Submit, NoHide
+    Hotkey, %over%, ToggleTestWindow
+	MsgBox, Settings have been saved!
+return
+
+ToggleTestWindow:
+    IfWinExist, Sceptre
+        WinHide, Sceptre
+    else
+        WinShow, Sceptre
+return
+;------------cross-works-----------------;
+ButtonCrossHairStart:
+Run, tools\lib\cross.exe
+MsgBox, CrossHair launched!
+Return
+ButtonCrossHairKill:
+Process, Close, cross.exe
+MsgBox, CrossHair has been killed!
+Return
+saveconfig:
+Gui, Submit, NoHide
+IniFile := "tools\config\cross.ini"
+IniWrite, %hide%, tools\config\cross.ini, Hotkeys, hide
+IniWrite, %gui%, tools\config\cross.ini, Hotkeys, gui
+MsgBox, Settings have been saved!
+Return
+GetIniValuec(file, section, key) {
+IniRead, value, %file%, %section%, %key%
+return value
+}
+Return
+reloadcross:
+    ; Close the existing .exe process
+    Process, Close, cross.exe
+    ; Run the .exe again
+    Run, tools\lib\cross.exe
+return
+;----------music-works------------;
+
+
+Music:
+Gui, +OwnDialogs
+FileSelectFile, Filetoplay, 3, , Select Audio File, Audio (*.wpl; *.wav; *.mp2; *.mp3; *.m3u; *.wma; *.mpeg)
+Return
+
+Start:
+   AV.Url := Filetoplay
+   GuiControl,, NowPlayingText, % AV.currentMedia.name
+return
+
+Stop:
+AV.controls.stop
+GuiControl,, NowPlayingText,
+return
+
+Pause:
+AV.controls.pause
+GuiControl,, NowPlayingText, % AV.currentMedia.name
+Return
+
+Unpause:
+AV.controls.play
+GuiControl,, NowPlayingText, % AV.currentMedia.name
+Return
+
+Next:
+AV.controls.next
+GuiControl,, NowPlayingText, % AV.currentMedia.name
+Return
+
+m3u:
+Run, tools\lib\m3u.exe
+Return
+; Begin Volume Slider
+
+
+VolumeX:
+Gui, Submit, NoHide
+AV.settings.volume := Volume
+GuiControl,, VolumeText, Volume: %Volume%
+Return
+
+;--------------cs2works---------------;
+open:
+Run, tools\lib\lib.exe
+MsgBox, CS2 LIB launched!
+Return
+close:
+Process, Close, lib.exe
+MsgBox, CS2 LIB has been killed!
+Return
+GenerateConfig:
+Gui, Submit, NoHide
+IniFile := "tools\config\config.ini"
+FileDelete, %IniFile%
+FileAppend, [Settings]`nsens=%senss%`nzoomsens=%zoomsenss%`n , %IniFile%
+FileAppend, [Hotkeys]`nM4A4=%M4A4%`nAUG=%AUG%`nSG=%SG%`nGalil=%Galil%`nM4A1=%M4A1%`nAK=%AK%`nUMP=%UMP%`nZoom=%zoom%`nFamas=%Famas%`nOff=%off%`n, %IniFile%
+MsgBox, Settings have been saved!
+Return
+GetIniValue(file, section, key) {
+IniRead, value, %file%, %section%, %key%
+return value
+}
+Return
+;----------------------auto-click---------------------------------;
+LeftButton:
+Gui, Submit, NoHide
+SendInput, {LButton Down}
+SetTimer, Clik, % 1000 / ACS
+Return
+LeftButtonUp:
+SendInput, {LButton Up}
+SetTimer, Clik, Off
+Return
+Clik() {
+Click
+Sleep, ACS
+}
+Return
+CheckBox:
+Gui, Submit, NoHide
+If (A_ThisHotkey = ACC)
+GuiControl,, EE, % !EE
+Gui, Submit, NoHide
+Stat := (EE) ? "On" : "Off"
+Hotkey, LButton, % Stat
+Hotkey, LButton Up, % Stat
+Return
+;-----------anti-recoil-------------------------------------------;
+ac:
+SendInput, {RButton & LButton Down}
+SetTimer, DragDown, % 10 / ARS
+Return
+acu:
+SendInput, {RButton & LButton Up}
+SetTimer, DragDown, Off
+Return
+DragDown:
+Gui, Submit, NoHide
+DllCall("mouse_event", "UInt", 0x01, "UInt", 0, "UInt", 1 + ARS)
+Return
+CheckBox2:
+Gui, Submit, NoHide
+If (A_ThisHotkey = ARR)
+GuiControl,, ED, % !ED
+Gui, Submit, NoHide
+Stat := (ED) ? "On" : "Off"
+Hotkey, ~RButton & LButton, % Stat
+Hotkey, ~RButton & LButton Up, % Stat
+Return
+;-------------------bhop----------------------------------------;
+Sbar:
+Gui, Submit, NoHide
+SendInput, {Space Down}
+SetTimer, Bhopp, % 1000 / BHO
+Return
+SbarUp:
+SendInput, {Space Up}
+SetTimer, Bhopp, Off
+Return
+Bhopp() {
+Send,{space}
+Sleep, BHO
+}
+Return
+CheckBox3:
+Gui, Submit, NoHide
+If (A_ThisHotkey = BHH)
+GuiControl,, ER, % !ER
+Gui, Submit, NoHide
+Stat := (ER) ? "On" : "Off"
+Hotkey, Space, % Stat
+Hotkey, Space Up, % Stat
+Return
+;-------;
+ButtonApplyChanges:
+Gui, Submit, NoHide
+If (AR != ARR) {
+Hotkey, % ARR, CheckBox2, Off
+Hotkey, % ARR := AR, CheckBox2, On
+}
+If (AC != ACC) {
+Hotkey, % ACC, CheckBox, Off
+Hotkey, % ACC := AC, CheckBox, On
+}
+If (BH != BHH) {
+Hotkey, % BHH, CheckBox3, Off
+Hotkey, % BHH := BH, CheckBox3, On
+}
+Return
+;----------binderect--------------------------------;
+SetKeybinds:
+Gui, Submit, NoHide
+Hotkey, % Keybind1, PerformAction1
+Hotkey, % Keybind2, PerformAction2
+Hotkey, % Keybind3, PerformAction3
+Hotkey, % Keybind4, PerformAction4
+Hotkey, % Keybind5, PerformAction5
+Hotkey, % Keybind6, PerformAction6
+Return
+;--------------binder-works-------------------------;
+PerformAction1:
+    Run, %Action1%
+return
+PerformAction2:
+    Run, %Action2%
+return
+PerformAction3:
+    Run, %Action3%
+return
+PerformAction4:
+    Run, %Action4%
+return
+PerformAction5:
+    Run, %Action5%
+return
+PerformAction6:
+    Run, %Action6%
+return
+GuiClose:
+ExitApp
